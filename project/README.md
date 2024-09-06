@@ -68,6 +68,8 @@ Clone the appropriate git repo with the starter code. There will be 2 folders. Z
 
 - kubectl
     - `curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl`
+# aws eks describe-addon-versions --addon-name vpc-cni
+# curl -o kubectl https://dl.k8s.io/release/v1.30.0/bin/linux/amd64/kubectl
     - `chmod +x ./kubectl`
     - `mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin`
     - `echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc`
