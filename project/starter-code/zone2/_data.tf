@@ -2,7 +2,7 @@ data "aws_caller_identity" "current" {}
 
  data "aws_ami" "amazon_linux_2" {
    most_recent = true
-   owners      = ["893184025649"]
+   owners      = ["amazon"]
 
    filter {
      name   = "owner-alias"
