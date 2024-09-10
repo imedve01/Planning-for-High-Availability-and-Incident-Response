@@ -123,7 +123,8 @@ sudo systemctl restart nginx
 
     `helm repo add prometheus-community https://prometheus-community.github.io/helm-charts`
 
-    `helm install prometheus prometheus-community/kube-prometheus-stack -f "values.yaml" --set image.repository=jettech/kube-webhook-certgen,image.tag=v1.5.2 --namespace monitoring`
+    `helm install prometheus prometheus-community/kube-prometheus-stack -f "values.yaml" --namespace monitoring`
+    `helm upgrade --install prometheus prometheus-community/kube-prometheus-stack --set image.repository=jettech/kube-webhook-certgen,image.tag=v1.5.2 --namespace monitoring`
 
 <!-- `helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring` -->
 
