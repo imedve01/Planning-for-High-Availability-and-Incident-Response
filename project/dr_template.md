@@ -21,31 +21,53 @@ us-west-1c
 
 
 ### Descriptions
-EKS:
+EKS 	
+  udacity-cluster with app-udacity-node-group of 2 nodes
+  Deplyed in 2 regions, 2 nodes each, 4 AZ
+
+EC2
+  Deployment servers for application and databases 	
+  - t3.micro (6)
+  - t3.medium
+  - Deplyed in 2 regions, 2 nodes each, 4 AZ
+
+ALB:
+  Load Balancer for Fail over, HA, Application Load Balancing
+  Deployed in 2 regions
 
 RDS:
-Aurora MySQL Database	
-- udacity-db-cluster: udacity-db-instance-0 (Reader instance), udacity-db-instance-1 (Writer instance)
-- db.t2.small	
-- 2 clusters with 2 nodes each across multiple AZ, data replication and 5 day backup
+  Aurora MySQL Database	
+  Name: udacity-db-cluster: 
+  Instances: udacity-db-instance-0 (Reader instance), udacity-db-instance-1 (Writer instance)
+  - db.t2.small	
+  - 2 clusters with 2 nodes each across multiple AZ, data replication and 5 day backup
+
+VPC	
+  Network Isolation and Control		
+  - IPs in multiple availability zones
 
 S3:
-Storage for the deployment
-- 2 regions:
+  Storage for the deployment
+  - 2 regions:
     - udacity-tf-igorm: US East (Ohio) us-east-2
     - udacity-tf-igorm-west: US West (N. California) us-west-1
 
 AMI:
-AMI image deployment image		
-- 2	instances AMI East / AMI West
+  AMI image deployment image		
+  - 2	instances AMI East / AMI West
     - udacity-igorm-east2
     - udacity-igorm-west
 
 
-
 ## DR Plan
 ### Pre-Steps:
-List steps you would perform to setup the infrastructure in the other region. It doesn't have to be super detailed, but high-level should suffice.
+1. Using terraform, deploy application into another AWS region (e.g., us-west-2)
+2. Setup a load balancer to route traffic between the regions
+3. Setup Database replication to a DR region
+4. Setup S3 in another (third) region
 
 ## Steps:
-You won't actually perform these steps, but write out what you would do to "fail-over" your application and database cluster to the other region. Think about all the pieces that were setup and how you would use those in the other region
+If infrastructure setup is done for HA, most of the steps would happen without any intervention
+1. Shut down primary instances of the application in the original location. 
+2. Load balancer will re-route traffic to the DR location
+3. Promote DB read replica to master
