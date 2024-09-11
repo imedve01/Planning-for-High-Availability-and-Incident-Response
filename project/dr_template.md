@@ -65,6 +65,7 @@ AMI:
 2. Setup a load balancer to route traffic between the regions
 3. Setup Database replication to a DR region
 4. Setup S3 in another (third) region
+5. Copy required AMIs
 
 ## Steps:
 If infrastructure setup is done for HA, most of the steps would happen without any intervention
